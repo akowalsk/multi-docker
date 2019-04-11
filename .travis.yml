@@ -9,10 +9,10 @@ script:
   - docker run akowalsk/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t akowalsk/multi-client -f ./client
-  - docker build -t akowalsk/multi-nginx -f ./nginx
-  - docker build -t akowalsk/multi-server -f ./server
-  - docker build -t akowalsk/multi-worker -f ./worker
+  - docker build -t akowalsk/multi-client ./client
+  - docker build -t akowalsk/multi-nginx ./nginx
+  - docker build -t akowalsk/multi-server ./server
+  - docker build -t akowalsk/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push akowalsk/multi-client
   - docker push akowalsk/multi-nginx
